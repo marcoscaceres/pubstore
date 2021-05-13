@@ -1,0 +1,1571 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="generator" content="ReSpec 26.7.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style>
+span.example-title{text-transform:none}
+aside.example,div.example,div.illegal-example{padding:.5em;margin:1em 0;position:relative;clear:both}
+div.illegal-example{color:red}
+div.illegal-example p{color:#000}
+aside.example,div.example{padding:.5em;border-left-width:.5em;border-left-style:solid;border-color:#e0cb52;background:#fcfaee}
+aside.example div.example{border-left-width:.1em;border-color:#999;background:#fff}
+aside.example div.example span.example-title{color:#999}
+.example pre{background-color:rgba(0,0,0,.03)}
+</style>
+<style>
+.issue-label{text-transform:initial}
+.warning>p:first-child{margin-top:0}
+.warning{padding:.5em;border-left-width:.5em;border-left-style:solid}
+span.warning{padding:.1em .5em .15em}
+.issue.closed span.issue-number{text-decoration:line-through}
+.warning{border-color:#f11;border-width:.2em;border-style:solid;background:#fbe9e9}
+.warning-title:before{content:"⚠";font-size:1.3em;float:left;padding-right:.3em;margin-top:-.3em}
+li.task-list-item{list-style:none}
+input.task-list-item-checkbox{margin:0 .35em .25em -1.6em;vertical-align:middle}
+.issue a.respec-gh-label{padding:5px;margin:0 2px 0 2px;font-size:10px;text-transform:none;text-decoration:none;font-weight:700;border-radius:4px;position:relative;bottom:2px;border:none;display:inline-block}
+</style>
+<style>
+pre.idl{padding:1em;position:relative}
+pre.idl>code{color:#000}
+@media print{
+pre.idl{white-space:pre-wrap}
+}
+.idlHeader{display:block;width:150px;background:#8ccbf2;color:#fff;font-family:sans-serif;font-weight:700;margin:-1em 0 1em -1em;height:28px;line-height:28px}
+.idlHeader a.self-link{margin-left:.3cm;text-decoration:none;border-bottom:none}
+.idlID{font-weight:700;color:#005a9c}
+.idlType{color:#005a9c}
+.idlName{color:#ff4500}
+.idlName a{color:#ff4500;border-bottom:1px dotted #ff4500;text-decoration:none}
+a.idlEnumItem{color:#000;border-bottom:1px dotted #ccc;text-decoration:none}
+.idlSuperclass{font-style:italic;color:#005a9c}
+.idlDefaultValue,.idlParamName{font-style:italic}
+.extAttr{color:#666}
+.idlSectionComment{color:gray}
+.idlIncludes a{font-weight:700}
+.respec-button-copy-paste:focus{text-decoration:none;border-color:#51a7e8;outline:0;box-shadow:0 0 5px rgba(81,167,232,.5)}
+.respec-button-copy-paste.selected:focus,.respec-button-copy-paste:focus:hover{border-color:#51a7e8}
+.respec-button-copy-paste.zeroclipboard-is-active,.respec-button-copy-paste.zeroclipboard-is-hover,.respec-button-copy-paste:active,.respec-button-copy-paste:hover{text-decoration:none;background-color:#ddd;background-image:linear-gradient(#eee,#ddd);border-color:#ccc}
+.respec-button-copy-paste.selected,.respec-button-copy-paste.zeroclipboard-is-active,.respec-button-copy-paste:active{background-color:#dcdcdc;background-image:none;border-color:#b5b5b5;box-shadow:inset 0 2px 4px rgba(0,0,0,.15)}
+.respec-button-copy-paste.selected:hover{background-color:#cfcfcf}
+.respec-button-copy-paste.disabled,.respec-button-copy-paste.disabled:hover,.respec-button-copy-paste:disabled,.respec-button-copy-paste:disabled:hover{color:rgba(102,102,102,.5);cursor:default;background-color:rgba(229,229,229,.5);background-image:none;border-color:rgba(197,197,197,.5);box-shadow:none}
+@media print{
+.respec-button-copy-paste{visibility:hidden}
+}
+</style>
+<style>
+dfn{cursor:pointer}
+.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font:small Helvetica Neue,sans-serif,Droid Sans Fallback;background:#fff;color:#000;box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);border-radius:2px}
+.dfn-panel:not(.docked)>.caret{position:absolute;top:-9px}
+.dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;top:0}
+.dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1}
+.dfn-panel *{margin:0}
+.dfn-panel b{display:block;color:#000;margin-top:.25em}
+.dfn-panel ul a[href]{color:#333}
+.dfn-panel>div{display:flex}
+.dfn-panel a.self-link{font-weight:700;margin-right:auto}
+.dfn-panel .marker{padding:.1em;margin-left:.5em;border-radius:.2em;text-align:center;white-space:nowrap;font-size:90%;color:#040b1c}
+.dfn-panel .marker.dfn-exported{background:#d1edfd;box-shadow:0 0 0 .125em #1ca5f940}
+.dfn-panel .marker.idl-block{background:#8ccbf2;box-shadow:0 0 0 .125em #0670b161}
+.dfn-panel a:not(:hover){text-decoration:none!important;border-bottom:none!important}
+.dfn-panel a[href]:hover{border-bottom-width:1px}
+.dfn-panel ul{padding:0}
+.dfn-panel li{margin-left:1em}
+.dfn-panel.docked{position:fixed;left:.5em;top:unset;bottom:2em;margin:0 auto;max-width:calc(100vw - .75em * 2 - .5em - .2em * 2);max-height:30vh;overflow:auto}
+</style>
+    
+    
+<title>Page Visibility Level 2</title>
+    
+<style id="respec-mainstyle">
+@keyframes pop{
+0%{transform:scale(1,1)}
+25%{transform:scale(1.25,1.25);opacity:.75}
+100%{transform:scale(1,1)}
+}
+.hljs{background:0 0!important}
+a abbr,h1 abbr,h2 abbr,h3 abbr,h4 abbr,h5 abbr,h6 abbr{border:none}
+dfn{font-weight:700}
+a.internalDFN{color:inherit;border-bottom:1px solid #99c;text-decoration:none}
+a.externalDFN{color:inherit;border-bottom:1px dotted #ccc;text-decoration:none}
+a.bibref{text-decoration:none}
+.respec-offending-element:target{animation:pop .25s ease-in-out 0s 1}
+.respec-offending-element,a[href].respec-offending-element{text-decoration:red wavy underline}
+@supports not (text-decoration:red wavy underline){
+.respec-offending-element:not(pre){display:inline-block}
+.respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}
+}
+#references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}
+cite .bibref{font-style:normal}
+code{color:#c63501}
+th code{color:inherit}
+a[href].orcid{padding-left:4px;padding-right:4px}
+a[href].orcid>svg{margin-bottom:-2px}
+.toc a,.tof a{text-decoration:none}
+a .figno,a .secno{color:#000}
+ol.tof,ul.tof{list-style:none outside none}
+.caption{margin-top:.5em;font-style:italic}
+table.simple{border-spacing:0;border-collapse:collapse;border-bottom:3px solid #005a9c}
+.simple th{background:#005a9c;color:#fff;padding:3px 5px;text-align:left}
+.simple th a{color:#fff;padding:3px 5px;text-align:left}
+.simple th[scope=row]{background:inherit;color:inherit;border-top:1px solid #ddd}
+.simple td{padding:3px 10px;border-top:1px solid #ddd}
+.simple tr:nth-child(even){background:#f0f6ff}
+.section dd>p:first-child{margin-top:0}
+.section dd>p:last-child{margin-bottom:0}
+.section dd{margin-bottom:1em}
+.section dl.attrs dd,.section dl.eldef dd{margin-bottom:0}
+#issue-summary>ul{column-count:2}
+#issue-summary li{list-style:none;display:inline-block}
+details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}
+details.respec-tests-details>*{padding-right:2em}
+details.respec-tests-details[open]{z-index:999999;position:absolute;border:thin solid #cad3e2;border-radius:.3em;background-color:#fff;padding-bottom:.5em}
+details.respec-tests-details[open]>summary{border-bottom:thin solid #cad3e2;padding-left:1em;margin-bottom:1em;line-height:2em}
+details.respec-tests-details>ul{width:100%;margin-top:-.3em}
+details.respec-tests-details>li{padding-left:1em}
+a[href].self-link:hover{opacity:1;text-decoration:none;background-color:transparent}
+h2,h3,h4,h5,h6{position:relative}
+aside.example .marker>a.self-link{color:inherit}
+h2>a.self-link,h3>a.self-link,h4>a.self-link,h5>a.self-link,h6>a.self-link{border:none;color:inherit;font-size:83%;height:2em;left:-1.6em;opacity:.5;position:absolute;text-align:center;text-decoration:none;top:0;transition:opacity .2s;width:2em}
+h2>a.self-link::before,h3>a.self-link::before,h4>a.self-link::before,h5>a.self-link::before,h6>a.self-link::before{content:"§";display:block}
+@media (max-width:767px){
+dd{margin-left:0}
+h2>a.self-link,h3>a.self-link,h4>a.self-link,h5>a.self-link,h6>a.self-link{left:auto;top:auto}
+}
+@media print{
+.removeOnSave{display:none}
+}
+</style>
+    
+  
+<style>
+ul.index{columns:30ch;column-gap:1.5em}
+ul.index li{list-style:inherit}
+ul.index li span{color:inherit;cursor:pointer;white-space:normal}
+#index-defined-here ul.index li{font-size:.9rem}
+ul.index code{color:inherit}
+#index-defined-here .print-only{display:none}
+@media print{
+#index-defined-here .print-only{display:initial}
+}
+</style>
+<meta name="description" content="This specification defines a means to programmatically determine the
+        visibility state of a document. This can aid in the development of
+        resource efficient web applications.">
+<link rel="canonical" href="https://www.w3.org/TR/page-visibility-2/">
+<style>
+.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}
+.hljs-comment,.hljs-quote{color:#717277;font-style:italic}
+.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4}
+.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;font-weight:700}
+.hljs-literal{color:#0b76c5}
+.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c}
+.hljs-built_in,.hljs-class .hljs-title{color:#9a6a01}
+.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801}
+.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3}
+.hljs-emphasis{font-style:italic}
+.hljs-strong{font-weight:700}
+.hljs-link{text-decoration:underline}
+</style>
+<style>
+var{position:relative;cursor:pointer}
+var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
+var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#000}
+var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#000;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
+var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
+</style>
+<style>
+.assert{background:#eee;border-left:.5em solid #aaa;padding:.3em}
+</style>
+<script id="initialUserConfig" type="application/json">{
+  "level": "2",
+  "specStatus": "CR",
+  "editors": [
+    {
+      "name": "Ilya Grigorik",
+      "url": "https://www.igvita.com/",
+      "company": "Shopify Inc.",
+      "companyURL": "https://shopify.com/",
+      "w3cid": "56102"
+    },
+    {
+      "name": "Marcos Cáceres",
+      "url": "https://marcosc.com/",
+      "company": "W3C",
+      "companyURL": "https://w3.org/",
+      "w3cid": 39125
+    }
+  ],
+  "github": "w3c/page-visibility",
+  "group": "webperf",
+  "implementationReportURI": "https://wpt.fyi/page-visibility/",
+  "testSuiteURI": "https://w3c-test.org/page-visibility/",
+  "xref": "web-platform",
+  "previousMaturity": "PR",
+  "previousPublishDate": "2017-10-17",
+  "crEnd": "2021-07-31",
+  "publishDate": "2021-05-18",
+  "publishISODate": "2021-05-18T00:00:00.000Z",
+  "generatedSubtitle": "Candidate Recommendation Snapshot 18 May 2021"
+}</script>
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-CR"></head>
+  <body class="h-entry" data-cite="WebIDL HTML INFRA URL WEBIDL DOM FETCH"><div class="head">
+    <a class="logo" href="https://www.w3.org/"><img alt="W3C" width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C"></a> <h1 id="title" class="title">Page Visibility Level 2</h1>
+    
+    <h2>
+      W3C Candidate Recommendation Snapshot
+      <time class="dt-published" datetime="2021-05-18">18 May 2021</time>
+    </h2>
+    <dl>
+      <dt>This version:</dt><dd>
+              <a class="u-url" href="https://www.w3.org/TR/2021/CR-page-visibility-2-20210518/">https://www.w3.org/TR/2021/CR-page-visibility-2-20210518/</a>
+            </dd><dt>Latest published version:</dt><dd>
+              <a href="https://www.w3.org/TR/page-visibility-2/">https://www.w3.org/TR/page-visibility-2/</a>
+            </dd>
+      <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/page-visibility/">https://w3c.github.io/page-visibility/</a></dd>
+      <dt>Test suite:</dt><dd><a href="https://w3c-test.org/page-visibility/">https://w3c-test.org/page-visibility/</a></dd>
+      <dt>Implementation report:</dt><dd>
+              <a href="https://wpt.fyi/page-visibility/">https://wpt.fyi/page-visibility/</a>
+            </dd>
+      
+      <dt>Previous version:</dt><dd><a href="https://www.w3.org/TR/2017/PR-page-visibility-2-20171017/">https://www.w3.org/TR/2017/PR-page-visibility-2-20171017/</a></dd>
+      
+      <dt>Editors:</dt>
+      <dd class="p-author h-card vcard" data-editor-id="56102"><a class="u-url url p-name fn" href="https://www.igvita.com/">Ilya Grigorik</a>
+            (<a class="p-org org h-org h-card" href="https://shopify.com/">Shopify Inc.</a>)
+          </dd><dd class="p-author h-card vcard" data-editor-id="39125"><a class="u-url url p-name fn" href="https://marcosc.com/">Marcos Cáceres</a>
+            (<a class="p-org org h-org h-card" href="https://w3.org/">W3C</a>)
+          </dd>
+      <dt>
+              Former editors:
+            </dt><dd class="p-author h-card vcard"><span class="p-name fn">Arvind Jain</span>
+            (<a class="p-org org h-org h-card" href="https://google.com/">Google Inc.</a>)
+           -  Until <time datetime="2014-12-01">01 December 2014</time></dd><dd class="p-author h-card vcard"><span class="p-name fn">Jatinder Mann</span>
+            (<a class="p-org org h-org h-card" href="https://microsoft.com">Microsoft Corp.</a>)
+           -  Until <time datetime="2014-02-01">01 February 2014</time></dd>
+      
+      <dt>Participate:</dt><dd>
+    <a href="https://github.com/w3c/page-visibility/">GitHub w3c/page-visibility</a>
+  </dd><dd>
+    <a href="https://github.com/w3c/page-visibility/issues/">File a bug</a>
+  </dd><dd>
+    <a href="https://github.com/w3c/page-visibility/commits/gh-pages">Commit history</a>
+  </dd><dd>
+    <a href="https://github.com/w3c/page-visibility/pulls/">Pull requests</a>
+  </dd>
+    </dl>
+    
+    
+    
+    <p class="copyright">
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+    ©
+    2021
+    
+    <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+    <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>,
+    <a href="https://ev.buaa.edu.cn/">Beihang</a>). 
+    W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a> rules
+    apply.
+  </p>
+    <hr title="Separator for header">
+  </div>
+    <section id="abstract" class="introductory"><h2>Abstract</h2>
+      <p>
+        This specification defines a means to programmatically determine the
+        visibility state of a document. This can aid in the development of
+        resource efficient web applications.
+      </p>
+    </section>
+    <section id="sotd" class="introductory"><h2>Status of This Document</h2><p><em>This section describes the status of this
+      document at the time of its publication. Other documents may supersede
+      this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision
+      of this technical report can be found in the
+      <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at
+      https://www.w3.org/TR/.</em></p>
+      <p>
+        This document replaces the first edition of <cite>Page
+        Visibility</cite>, and includes:
+      </p>
+      <ul>
+        <li>Processing and IDL clarifications:
+          <ul>
+            <li><a data-link-type="idl" href="#dom-visibilitystate" class="internalDFN" id="ref-for-dom-visibilitystate-1"><code>VisibilityState</code></a> enum value "unloaded" was removed.
+            </li>
+            <li><a data-link-type="idl" href="#dom-document-onvisibilitychange" class="internalDFN" id="ref-for-dom-document-onvisibilitychange-1"><code>onvisibilitychange</code></a> event handler was added.
+            </li>
+            <li>Various enhancements and clarifications in the processing model
+            and algorithms.
+            </li>
+          </ul>
+        </li>
+        <li><a data-link-type="dfn" href="#dfn-visibility-states" class="internalDFN" id="ref-for-dfn-visibility-states-1">Visibility state</a> is set to <a data-link-type="dfn" href="#dfn-hidden" class="internalDFN" id="ref-for-dfn-hidden-1">hidden</a> when
+        the user agent is unloading a document;
+        </li>
+      </ul>
+    <p>
+    This document was published by the <a href="https://www.w3.org/webperf/">Web Performance Working Group</a> as a
+    Candidate Recommendation Snapshot. 
+    This document is intended to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation.
+  </p><p>
+    <a href="https://github.com/w3c/page-visibility/issues/">GitHub Issues</a> are preferred for
+          discussion of this specification.
+        
+    
+  </p><p>
+      Publication as a Candidate Recommendation does not imply endorsement
+      by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. A Candidate Recommendation Snapshot has received
+      <a href="https://www.w3.org/2020/Process-20200915/#dfn-wide-review">wide review</a>
+      and is intended to gather
+      <a href="https://wpt.fyi/page-visibility/">implementation experience</a>.
+    </p><p></p><p>This Candidate Recommendation is not expected to advance to Proposed Recommendation any earlier than 31 July 2021.</p><p>
+    
+        This document was produced by a group
+        operating under the
+        <a href="https://www.w3.org/Consortium/Patent-Policy/"><abbr title="World Wide Web Consortium">W3C</abbr> Patent
+          Policy</a>.
+       
+    
+                <abbr title="World Wide Web Consortium">W3C</abbr> maintains a
+                <a rel="disclosure" href="https://www.w3.org/groups/wg/webperf/ipr">public list of any patent disclosures</a>
+          made in connection with the deliverables of
+          the group; that page also includes
+          instructions for disclosing a patent. An individual who has actual
+          knowledge of a patent which the individual believes contains
+          <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a>
+          must disclose the information in accordance with
+          <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+        
+    
+  </p><p>
+                  This document is governed by the
+                  <a id="w3c_process_revision" href="https://www.w3.org/2020/Process-20200915/">15 September 2020 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>
+        Introduction
+      </a></li><li class="tocline"><a class="tocxref" href="#examples-of-usage"><bdi class="secno">2. </bdi>
+        Examples of usage
+      </a></li><li class="tocline"><a class="tocxref" href="#visibility-states"><bdi class="secno">3. </bdi>
+        Visibility states
+      </a></li><li class="tocline"><a class="tocxref" href="#visibilitystate-enum"><bdi class="secno">4. </bdi>
+        <code>VisibilityState</code> enum
+      </a></li><li class="tocline"><a class="tocxref" href="#extensions-to-the-document-interface"><bdi class="secno">5. </bdi>
+        Extensions to the <code>Document</code> interface
+      </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#hidden-attribute"><bdi class="secno">5.1 </bdi>
+          <span data-export="" data-dfn-type="attribute" data-idl="attribute" data-title="hidden" data-dfn-for="Document" data-type="boolean" data-lt="hidden" data-local-lt="Document.hidden"><code>hidden</code></span> attribute
+        </a></li><li class="tocline"><a class="tocxref" href="#visibilitystate-attribute"><bdi class="secno">5.2 </bdi>
+          <span data-export="" data-dfn-type="attribute" data-idl="attribute" data-title="visibilityState" data-dfn-for="Document" data-type="VisibilityState" data-lt="visibilityState" data-local-lt="Document.visibilityState"><code>visibilityState</code></span> attribute
+        </a></li><li class="tocline"><a class="tocxref" href="#onvisibilitychange-event-handler-attribute"><bdi class="secno">5.3 </bdi>
+          <span data-export="" data-dfn-type="attribute" data-idl="attribute" data-title="onvisibilitychange" data-dfn-for="Document" data-type="EventHandler" data-lt="onvisibilitychange" data-local-lt="Document.onvisibilitychange"><code>onvisibilitychange</code></span> event handler attribute
+        </a></li></ol></li><li class="tocline"><a class="tocxref" href="#reacting-to-visibilitychange"><bdi class="secno">6. </bdi>
+        Reacting to <code>"visibilitychange"</code> changes
+      </a></li><li class="tocline"><a class="tocxref" href="#privacy-security"><bdi class="secno">7. </bdi>
+        Privacy and Security
+      </a></li><li class="tocline"><a class="tocxref" href="#accessibility-considerations"><bdi class="secno">8. </bdi>
+        Accessibility considerations
+      </a></li><li class="tocline"><a class="tocxref" href="#terminology"><bdi class="secno">9. </bdi>
+        Terminology
+      </a></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">10. </bdi>Conformance</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">A. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">A.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">A.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#acknowledgements"><bdi class="secno">B. </bdi>
+        Acknowledgments
+      </a></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">C.1 </bdi>Normative references</a></li></ol></li></ol></nav>
+    <section id="introduction" class="informative">
+      <h2 id="x1-introduction"><bdi class="secno">1. </bdi>
+        Introduction
+      <a class="self-link" aria-label="§" href="#introduction"></a></h2><p><em>This section is non-normative.</em></p>
+      <p>
+        The <cite>Page Visibility API</cite> defines a means to
+        programmatically determine the <a data-link-type="dfn" href="#dfn-visibility-states" class="internalDFN" id="ref-for-dfn-visibility-states-2">visibility state</a> of a
+        top-level browsing context, and to be notified if the
+        <a data-link-type="dfn" href="#dfn-visibility-states" class="internalDFN" id="ref-for-dfn-visibility-states-3">visibility state</a> changes. Without knowing the
+        <a data-link-type="dfn" href="#dfn-visibility-states" class="internalDFN" id="ref-for-dfn-visibility-states-4">visibility state</a> of a page, web developers have been
+        designing web pages as if they are always <a data-link-type="dfn" href="#dfn-visible" class="internalDFN" id="ref-for-dfn-visible-1">visible</a>. This
+        not only results in higher machine resource utilization, but it
+        prevents web developers from making runtime decisions based on whether
+        the web page is <a data-link-type="dfn" href="#dfn-visible" class="internalDFN" id="ref-for-dfn-visible-2">visible</a> to the user. Designing web pages
+        with knowledge of the document's <a data-link-type="dfn" href="#dfn-visibility-states" class="internalDFN" id="ref-for-dfn-visibility-states-5">visibility state</a> can
+        result in improved user experiences and power efficient sites.
+      </p>
+      <p>
+        With this API, web applications can choose to alter their behavior
+        based on whether they are <a data-link-type="dfn" href="#dfn-visible" class="internalDFN" id="ref-for-dfn-visible-3">visible</a> to the user or not. For
+        example, this API can be used to scale back work when the page is no
+        longer <a data-link-type="dfn" href="#dfn-visible" class="internalDFN" id="ref-for-dfn-visible-4">visible</a>.
+      </p>
+    </section>
+    <section class="informative" id="examples-of-usage">
+      <h2 id="x2-examples-of-usage"><bdi class="secno">2. </bdi>
+        Examples of usage
+      <a class="self-link" aria-label="§" href="#examples-of-usage"></a></h2><p><em>This section is non-normative.</em></p>
+      <p>
+        To improve the user experience and optimize CPU and power efficiency
+        the application could autoplay a video when the application is
+        <a data-link-type="dfn" href="#dfn-visible" class="internalDFN" id="ref-for-dfn-visible-5">visible</a>, and automatically pause the playback when the
+        application is <a data-link-type="dfn" href="#dfn-hidden" class="internalDFN" id="ref-for-dfn-hidden-2">hidden</a>:
+      </p>
+      <div class="example" id="example-1-visibility-aware-video-playback">
+        <div class="marker">
+    <a class="self-link" href="#example-1-visibility-aware-video-playback">Example<bdi> 1</bdi></a><span class="example-title">: Visibility-aware video playback</span>
+  </div> <pre aria-busy="false"><code class="hljs js"><span class="hljs-keyword">const</span> videoElement = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"videoElement"</span>);
+
+<span class="hljs-comment">// Autoplay the video if application is visible</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.visibilityState === <span class="hljs-string">"visible"</span>) {
+  videoElement.play();
+}
+
+<span class="hljs-comment">// Handle page visibility change events</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">visibilityListener</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">switch</span>(<span class="hljs-built_in">document</span>.visibilityState) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">"hidden"</span>:
+      videoElement.pause();
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">"visible"</span>:
+      videoElement.play();
+      <span class="hljs-keyword">break</span>;
+  }
+}
+
+<span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">"visibilitychange"</span>, visibilityListener);</code></pre>
+      </div>
+      <p>
+        Similar logic can be applied to intelligently pause and resume, or
+        throttle, execution of application code such as animation loops,
+        analytics, and other types of processing. By combining the
+        <a data-link-type="idl" href="#dom-document-visibilitystate" class="internalDFN" id="ref-for-dom-document-visibilitystate-1"><code>visibilityState</code></a> attribute of the <a data-link-type="idl" data-type="interface" href="https://dom.spec.whatwg.org/#document" id="ref-for-index-term-document-interface-1"><code>Document</code></a> interface
+        and the <code>"visibilitychange"</code> event, the application is able to both
+        query and listen to page visibility events to deliver a better user
+        experience, as well as improve efficiency and performance of its
+        execution.
+      </p>
+    </section>
+    <section id="visibility-states">
+      <h2 id="x3-visibility-states"><bdi class="secno">3. </bdi>
+        Visibility states
+      <a class="self-link" aria-label="§" href="#visibility-states"></a></h2>
+      <p>
+        The <a data-link-type="dfn" data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document" id="ref-for-index-term-document-1">document</a> of the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-index-term-top-level-browsing-context-1">top-level browsing context</a> can be in one
+        of the following <dfn data-dfn-for="Document" data-export="" data-plurals="visibility state" id="dfn-visibility-states" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">visibility
+        states</dfn>:
+      </p>
+      <dl data-sort=""><dt>
+          <dfn data-dfn-for="Document" data-export="" data-dfn-type="dfn" id="dfn-hidden" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">hidden</dfn>
+        </dt>
+        <dd>
+          <p>
+            The <a data-link-type="dfn" data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document" id="ref-for-index-term-document-2">document</a> is not <a data-link-type="dfn" href="#dfn-visible" class="internalDFN" id="ref-for-dfn-visible-6">visible</a> at all on any screen,
+            as determined by running the steps to <a data-link-type="dfn" href="#dfn-determine-the-visibility-state" class="internalDFN" id="ref-for-dfn-determine-the-visibility-state-1">determine the visibility
+            state</a> of the <a data-link-type="dfn" data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document" id="ref-for-index-term-document-3">document</a>'s <a data-link-type="dfn" data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-index-term-relevant-global-object-1">relevant global object</a>'s
+            <a data-link-type="dfn" data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-index-term-browsing-context-1">browsing context</a>.
+          </p>
+          <div class="note" role="note" id="issue-container-generatedID"><div role="heading" class="note-title marker" id="h-note" aria-level="3"><span>Note</span></div><aside class="">
+            <p>
+              Examples of actions that can cause a document to be
+              <a data-link-type="dfn" href="#dfn-hidden" class="internalDFN" id="ref-for-dfn-hidden-3">hidden</a>:
+            </p>
+            <ul>
+              <li>A tab is made into a background tab.
+              </li>
+              <li>The user agent is minimized.
+              </li>
+              <li>The user agent is moved off of the screen.
+              </li>
+              <li>The operating system's lock screen covers the user agent.
+              </li>
+            </ul>
+          </aside></div>
+        </dd>
+        <dt>
+          <dfn data-dfn-for="Document" data-export="" data-dfn-type="dfn" id="dfn-visible" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">visible</dfn>
+        </dt>
+        <dd>
+          The <a data-link-type="dfn" data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document" id="ref-for-index-term-document-4">document</a> is at least partially visible on at least one
+          screen, as determined by running the steps to <a data-link-type="dfn" href="#dfn-determine-the-visibility-state" class="internalDFN" id="ref-for-dfn-determine-the-visibility-state-2">determine the
+          visibility state</a> of the <a data-link-type="dfn" data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document" id="ref-for-index-term-document-5">document</a>'s <a data-link-type="dfn" data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-index-term-relevant-global-object-2">relevant global object</a>'s
+          <a data-link-type="dfn" data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-index-term-browsing-context-2">browsing context</a>.
+        </dd></dl>
+      <p>
+        The <a data-link-type="dfn" href="#dfn-visibility-states" class="internalDFN" id="ref-for-dfn-visibility-states-6">visibility states</a> are reflected in the API via the
+        <a data-link-type="idl" href="#dom-visibilitystate" class="internalDFN" id="ref-for-dom-visibilitystate-2"><code>VisibilityState</code></a> enum.
+      </p>
+      <p>
+        The steps to <dfn data-export="" data-dfn-type="dfn" id="dfn-determine-the-visibility-state" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">determine the
+        visibility state</dfn> of a <a data-link-type="dfn" data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-index-term-browsing-context-3">browsing context</a> <var>context</var> are as
+        follows. The steps return a <a data-link-type="dfn" href="#dfn-visibility-states" class="internalDFN" id="ref-for-dfn-visibility-states-7">visibility state</a>.
+      </p>
+      <ol class="algorithm">
+        <li>Let <var data-type="Document">doc</var> be the <var>context</var>'s <a data-link-type="dfn" data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-index-term-top-level-browsing-context-2">top-level browsing
+        context</a>'s <a data-link-type="dfn" data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-index-term-active-document-1">active document</a>.
+        </li>
+        <li class="assert">Assert: <var data-type="Document">doc</var> is a <a data-link-type="dfn" data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document" id="ref-for-index-term-document-6">Document</a>.
+        </li>
+        <li>Return <a data-link-type="dfn" href="#dfn-visible" class="internalDFN" id="ref-for-dfn-visible-7">visible</a> if:
+          <ul>
+            <li>The user agent has assistive technologies attached to the
+            <var data-type="Document">doc</var>.
+            </li>
+            <li>Any of the <var data-type="Document">doc</var>'s viewport contents are visible to the user.
+            </li>
+          </ul>
+        </li>
+        <li>Otherwise, return <a data-link-type="dfn" href="#dfn-hidden" class="internalDFN" id="ref-for-dfn-hidden-4">hidden</a>.
+        </li>
+      </ol>
+    </section>
+    <section data-dfn-for="VisibilityState" id="visibilitystate-enum">
+      <h2 id="x4-visibilitystate-enum"><bdi class="secno">4. </bdi>
+        <code>VisibilityState</code> enum
+      <a class="self-link" aria-label="§" href="#visibilitystate-enum"></a></h2>
+      <pre class="idl def" id="webidl-1365879173"><span class="idlHeader"><a class="self-link" href="#webidl-1365879173">WebIDL</a></span><code><span data-idl="" class="idlEnum" id="idl-def-visibilitystate" data-title="VisibilityState">enum <a class="internalDFN idlID" data-link-type="enum" href="#dom-visibilitystate" id="ref-for-dom-visibilitystate-3"><code>VisibilityState</code></a> {
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-visibilitystate-hidden" id="ref-for-dom-visibilitystate-hidden-1"><code>hidden</code></a>"</span>, <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-visibilitystate-visible" id="ref-for-dom-visibilitystate-visible-1"><code>visible</code></a>"</span>
+};</span></code></pre>
+      <p>
+        The <dfn data-export="" data-dfn-type="enum" id="dom-visibilitystate" data-idl="enum" data-title="VisibilityState" data-dfn-for="" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition"><code>VisibilityState</code></dfn> enum is used to represent the
+        <a data-link-type="dfn" href="#dfn-visibility-states" class="internalDFN" id="ref-for-dfn-visibility-states-8">visibility states</a>.
+      </p>
+      <p>
+        The "<dfn data-export="" data-dfn-type="enum-value" id="dom-visibilitystate-hidden" data-idl="enum-value" data-title="hidden" data-dfn-for="VisibilityState" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition"><code>hidden</code></dfn>" enum value represents the <a data-link-type="dfn" href="#dfn-hidden" class="internalDFN" id="ref-for-dfn-hidden-5">hidden</a>
+        <a data-link-type="dfn" href="#dfn-visibility-states" class="internalDFN" id="ref-for-dfn-visibility-states-9">visibility state</a>.
+      </p>
+      <p>
+        Likewise, the "<dfn data-export="" data-dfn-type="enum-value" id="dom-visibilitystate-visible" data-idl="enum-value" data-title="visible" data-dfn-for="VisibilityState" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition"><code>visible</code></dfn>" enum value represents the
+        <a data-link-type="dfn" href="#dfn-visible" class="internalDFN" id="ref-for-dfn-visible-8">visible</a> <a data-link-type="dfn" href="#dfn-visibility-states" class="internalDFN" id="ref-for-dfn-visibility-states-10">visibility state</a>.
+      </p>
+    </section>
+    <section data-dfn-for="Document" id="extensions-to-the-document-interface">
+      <h2 id="x5-extensions-to-the-document-interface"><bdi class="secno">5. </bdi>
+        Extensions to the <code>Document</code> interface
+      <a class="self-link" aria-label="§" href="#extensions-to-the-document-interface"></a></h2>
+      <p>
+        This specification extends the <a data-link-type="idl" data-type="interface" href="https://dom.spec.whatwg.org/#document" id="ref-for-index-term-document-interface-2"><code>Document</code></a> interface:
+      </p>
+      <pre class="idl def" id="webidl-722037302"><span class="idlHeader"><a class="self-link" href="#webidl-722037302">WebIDL</a></span><code><span data-idl="" class="idlInterface" id="idl-def-document-partial-1" data-title="Document">partial interface <a data-idl="partial" data-link-type="interface" data-title="Document" class="idlID" data-dfn-for="Document" data-type="interface" href="https://dom.spec.whatwg.org/#document" id="ref-for-index-term-document-interface-3">Document</a> {<span data-idl="" class="idlAttribute" id="idl-def-document-hidden" data-title="hidden" data-dfn-for="Document">
+  readonly attribute<span class="idlType"> <a data-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-index-term-boolean-type-1">boolean</a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-document-hidden" id="ref-for-dom-document-hidden-1"><code>hidden</code></a>;</span><span data-idl="" class="idlAttribute" id="idl-def-document-visibilitystate" data-title="visibilityState" data-dfn-for="Document">
+  readonly attribute<span class="idlType"> <a href="#dom-visibilitystate" class="internalDFN" data-link-type="idl" id="ref-for-dom-visibilitystate-4"><code>VisibilityState</code></a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-document-visibilitystate" id="ref-for-dom-document-visibilitystate-2"><code>visibilityState</code></a>;</span><span data-idl="" class="idlAttribute" id="idl-def-document-onvisibilitychange" data-title="onvisibilitychange" data-dfn-for="Document">
+  attribute<span class="idlType"> <a data-type="typedef" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-index-term-eventhandler-1">EventHandler</a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-document-onvisibilitychange" id="ref-for-dom-document-onvisibilitychange-2"><code>onvisibilitychange</code></a>;</span>
+};</span></code></pre>
+      <section id="hidden-attribute">
+        <h3 id="x5-1-hidden-attribute"><bdi class="secno">5.1 </bdi>
+          <dfn data-export="" data-dfn-type="attribute" id="dom-document-hidden" data-idl="attribute" data-title="hidden" data-dfn-for="Document" data-type="boolean" data-lt="hidden" data-local-lt="Document.hidden" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition"><code>hidden</code></dfn> attribute
+        <a class="self-link" aria-label="§" href="#hidden-attribute"></a></h3>
+        <p>
+          On getting, the <a data-link-type="idl" href="#dom-document-hidden" class="internalDFN" id="ref-for-dom-document-hidden-2"><code>hidden</code></a> attribute <em class="rfc2119">MUST</em>:
+        </p>
+        <ol class="algorithm">
+          <li>Let <var data-type="Visibility State">state</var> be the result of <a data-link-type="dfn" href="#dfn-determine-the-visibility-state" class="internalDFN" id="ref-for-dfn-determine-the-visibility-state-3">determine the
+          visibility state</a> of <a data-link-type="dfn" data-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-index-term-this-1">this</a>'s <a data-link-type="dfn" data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-index-term-relevant-global-object-3">relevant global object</a>'s
+          <a data-link-type="dfn" data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-index-term-browsing-context-4">browsing context</a>.
+          </li>
+          <li>If <var data-type="Visibility State">state</var> is <a data-link-type="dfn" href="#dfn-visible" class="internalDFN" id="ref-for-dfn-visible-9">visible</a>, then return false. Return
+          true otherwise.
+          </li>
+        </ol>
+      </section>
+      <section id="visibilitystate-attribute">
+        <h3 id="x5-2-visibilitystate-attribute"><bdi class="secno">5.2 </bdi>
+          <dfn data-export="" data-dfn-type="attribute" id="dom-document-visibilitystate" data-idl="attribute" data-title="visibilityState" data-dfn-for="Document" data-type="VisibilityState" data-lt="visibilityState" data-local-lt="Document.visibilityState" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition"><code>visibilityState</code></dfn> attribute
+        <a class="self-link" aria-label="§" href="#visibilitystate-attribute"></a></h3>
+        <p>
+          On getting, the <a data-link-type="idl" href="#dom-document-visibilitystate" class="internalDFN" id="ref-for-dom-document-visibilitystate-3"><code>visibilityState</code></a> attribute the user agent
+          <em class="rfc2119">MUST</em>:
+        </p>
+        <ol class="algorithm">
+          <li>Let <var data-type="Visibility State">state</var> be the result of <a data-link-type="dfn" href="#dfn-determine-the-visibility-state" class="internalDFN" id="ref-for-dfn-determine-the-visibility-state-4">determine the
+          visibility state</a> of <a data-link-type="dfn" data-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-index-term-this-2">this</a>'s <a data-link-type="dfn" data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-index-term-relevant-global-object-4">relevant global object</a>'s
+          <a data-link-type="dfn" data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-index-term-browsing-context-5">browsing context</a>.
+          </li>
+          <li>If <var data-type="Visibility State">state</var> is <a data-link-type="dfn" href="#dfn-visible" class="internalDFN" id="ref-for-dfn-visible-10">visible</a>, return
+          "<a data-link-type="idl" href="#dom-visibilitystate-visible" class="internalDFN" id="ref-for-dom-visibilitystate-visible-2"><code>visible</code></a>". Otherwise, return
+          "<a data-link-type="idl" href="#dom-visibilitystate-hidden" class="internalDFN" id="ref-for-dom-visibilitystate-hidden-2"><code>hidden</code></a>".
+          </li>
+        </ol>
+      </section>
+      <section id="onvisibilitychange-event-handler-attribute">
+        <h3 id="x5-3-onvisibilitychange-event-handler-attribute"><bdi class="secno">5.3 </bdi>
+          <dfn data-export="" data-dfn-type="attribute" id="dom-document-onvisibilitychange" data-idl="attribute" data-title="onvisibilitychange" data-dfn-for="Document" data-type="EventHandler" data-lt="onvisibilitychange" data-local-lt="Document.onvisibilitychange" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition"><code>onvisibilitychange</code></dfn> event handler attribute
+        <a class="self-link" aria-label="§" href="#onvisibilitychange-event-handler-attribute"></a></h3>
+        <p>
+          The <a data-link-type="idl" href="#dom-document-onvisibilitychange" class="internalDFN" id="ref-for-dom-document-onvisibilitychange-3"><code>onvisibilitychange</code></a> attribute is an <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes" id="ref-for-index-term-event-handler-idl-attribute-1">event handler
+          IDL attribute</a> for the <code>"visibilitychange"</code> event type (see
+          <a href="#reacting-to-visibilitychange" class="sec-ref">§&nbsp;<bdi class="secno">6. </bdi>
+        Reacting to <code>"visibilitychange"</code> changes</a>).
+        </p>
+      </section>
+    </section>
+    <section id="reacting-to-visibilitychange-changes">
+      <h2 id="reacting-to-visibilitychange"><bdi class="secno">6. </bdi>
+        Reacting to <code>"visibilitychange"</code> changes
+      <a class="self-link" aria-label="§" href="#reacting-to-visibilitychange"></a></h2>
+      <p>
+        The <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#task-source" id="ref-for-index-term-task-source-1">task source</a> for these <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task" id="ref-for-index-term-tasks-1">tasks</a> is the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#user-interaction-task-source" id="ref-for-index-term-user-interaction-task-source-1">user
+        interaction task source</a>.
+      </p>
+      <p>
+        When the user agent determines that the visibility of the <a data-link-type="idl" data-type="interface" href="https://dom.spec.whatwg.org/#document" id="ref-for-index-term-document-interface-4"><code>Document</code></a>
+        of the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-index-term-top-level-browsing-context-3">top-level browsing context</a> has changed, the user agent
+        <em class="rfc2119">MUST</em> run the following steps:
+      </p>
+      <ol class="algorithm">
+        <li>Let <var data-type="Document">doc</var> be the <a data-link-type="idl" data-type="interface" href="https://dom.spec.whatwg.org/#document" id="ref-for-index-term-document-interface-5"><code>Document</code></a> of the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-index-term-top-level-browsing-context-4">top-level browsing
+        context</a>.
+        </li>
+        <li>If <var data-type="Document">doc</var> is now <a data-link-type="dfn" href="#dfn-visible" class="internalDFN" id="ref-for-dfn-visible-11">visible</a>:
+          <ol>
+            <li>If traversing to a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#session-history-entry" id="ref-for-index-term-session-history-entry-1">session history entry</a>, run the <a href="#dfn-now-visible-algorithm" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-now-visible-algorithm-1">now
+            visible algorithm</a> before running the step to fire the
+            <a data-link-type="dfn" data-type="event" href="https://html.spec.whatwg.org/multipage/indices.html#event-pageshow" id="ref-for-index-term-pageshow-for-window-1">pageshow</a> event.
+            </li>
+            <li>Otherwise, <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-index-term-queue-a-task-1">queue a task</a> that runs the <a href="#dfn-now-visible-algorithm" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-now-visible-algorithm-2">now visible
+            algorithm</a>.
+            </li>
+          </ol>
+        </li>
+        <li>Else if <var data-type="Document">doc</var> is now not <a data-link-type="dfn" href="#dfn-visible" class="internalDFN" id="ref-for-dfn-visible-12">visible</a>, or if the user agent
+        is to <a data-link-type="dfn" data-type="event" href="https://html.spec.whatwg.org/multipage/indices.html#event-unload" id="ref-for-index-term-unload-for-window-1">unload</a> <var data-type="Document">doc</var>:
+          <ol>
+            <li>If the user agent is to <a data-link-type="dfn" data-type="event" href="https://html.spec.whatwg.org/multipage/indices.html#event-unload" id="ref-for-index-term-unload-for-window-2">unload</a> the <a data-link-type="idl" data-type="interface" href="https://dom.spec.whatwg.org/#document" id="ref-for-index-term-document-interface-6"><code>Document</code></a>, run
+            the <a href="#dfn-now-hidden-algorithm" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-now-hidden-algorithm-1">now hidden algorithm</a> during the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#unloading-document-visibility-change-steps" id="ref-for-index-term-unloading-document-visibility-change-steps-1">unloading document
+            visibility change steps</a>.
+            </li>
+            <li>Otherwise, <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-index-term-queue-a-task-2">queue a task</a> that runs the <a href="#dfn-now-hidden-algorithm" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-now-hidden-algorithm-2">now hidden
+            algorithm</a>.
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <p>
+        The <dfn data-export="" data-dfn-type="abstract-op" id="dfn-now-visible-algorithm" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">now visible
+        algorithm</dfn> runs the following steps synchronously:
+      </p>
+      <ol class="algorithm">
+        <li>Let <var data-type="Document">doc</var> be the <a data-link-type="idl" data-type="interface" href="https://dom.spec.whatwg.org/#document" id="ref-for-index-term-document-interface-7"><code>Document</code></a> of the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-index-term-top-level-browsing-context-5">top-level browsing
+        context</a>.
+        </li>
+        <li>
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-index-term-fire-an-event-1">Fire an event</a> named "<code>visibilitychange</code>" that bubbles, isn't
+          cancelable, and has no default action, at the <var data-type="Document">doc</var>.
+        </li>
+        <li>Run <dfn id="dfn-external-now-visible-algorithm" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">external now visible algorithm</dfn> if one is defined by
+        another specification.
+        </li>
+      </ol>
+      <p>
+        The <dfn data-export="" data-dfn-type="abstract-op" id="dfn-now-hidden-algorithm" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">now hidden
+        algorithm</dfn> runs the following steps synchronously:
+      </p>
+      <ol class="algorithm">
+        <li>Let <var data-type="Document">doc</var> be the <a data-link-type="idl" data-type="interface" href="https://dom.spec.whatwg.org/#document" id="ref-for-index-term-document-interface-8"><code>Document</code></a> of the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-index-term-top-level-browsing-context-6">top-level browsing
+        context</a>.
+        </li>
+        <li>
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-index-term-fire-an-event-2">Fire an event</a> named "<code>visibilitychange</code>" that bubbles, isn't
+          cancelable, and has no default action, at the <var data-type="Document">doc</var>.
+        </li>
+        <li>Run <dfn id="dfn-external-now-hidden-algorithm" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">external now hidden algorithm</dfn> if one is defined by
+        another specification.
+        </li>
+      </ol>
+    </section>
+    <section id="privacy-security">
+      <h2 id="x7-privacy-and-security"><bdi class="secno">7. </bdi>
+        Privacy and Security
+      <a class="self-link" aria-label="§" href="#privacy-security"></a></h2>
+      <p>
+        The <cite>Page Visibility API</cite> enables developers to know when a
+        <a data-link-type="idl" data-type="interface" href="https://dom.spec.whatwg.org/#document" id="ref-for-index-term-document-interface-9"><code>Document</code></a> is visible or in focus. Existing mechanisms, such as the
+        <a data-link-type="dfn" data-type="event" href="https://html.spec.whatwg.org/multipage/indices.html#event-focus" id="ref-for-index-term-focus-for-window-1">focus</a> and <a data-link-type="dfn" data-type="event" href="https://html.spec.whatwg.org/multipage/indices.html#event-blur" id="ref-for-index-term-blur-for-window-1">blur</a> events, when attached to the
+        <a data-link-type="idl" data-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="ref-for-index-term-window-interface-1"><code>Window</code></a> object already provide a mechanism to detect when the
+        <a data-link-type="idl" data-type="interface" href="https://dom.spec.whatwg.org/#document" id="ref-for-index-term-document-interface-10"><code>Document</code></a> is the active document; the <a data-link-type="dfn" data-type="event" href="https://html.spec.whatwg.org/multipage/indices.html#event-unload" id="ref-for-index-term-unload-for-window-3">unload</a> event
+        provides a notification that the page is being unloaded.
+      </p>
+    </section>
+    <section id="accessibility-considerations">
+      <h2 id="x8-accessibility-considerations"><bdi class="secno">8. </bdi>
+        Accessibility considerations
+      <a class="self-link" aria-label="§" href="#accessibility-considerations"></a></h2>
+      <p>
+        To accommodate assistive technologies that are typically full screen
+        but still show a view of the page, when applicable, on getting, the
+        <a data-link-type="idl" href="#dom-document-visibilitystate" class="internalDFN" id="ref-for-dom-document-visibilitystate-4"><code>visibilityState</code></a> attribute <em class="rfc2119">MAY</em> return
+        "<a data-link-type="idl" href="#dom-visibilitystate-visible" class="internalDFN" id="ref-for-dom-visibilitystate-visible-3"><code>visible</code></a>", instead of "<a data-link-type="idl" href="#dom-visibilitystate-hidden" class="internalDFN" id="ref-for-dom-visibilitystate-hidden-3"><code>hidden</code></a>",
+        when the user agent is not minimized but is fully obscured by other
+        applications.
+      </p>
+    </section>
+    <section id="terminology">
+      <h2 id="x9-terminology"><bdi class="secno">9. </bdi>
+        Terminology
+      <a class="self-link" aria-label="§" href="#terminology"></a></h2>
+      <p>
+        The following concepts and interfaces are defined in the [<cite><a class="bibref" data-link-type="biblio" href="#bib-html" title="HTML Standard">HTML</a></cite>]
+        specification:
+      </p>
+      <ul data-sort=""><li>
+          <dfn id="dfn-session-history-entry" class="externalDFN" data-no-export=""><a href="https://html.spec.whatwg.org/multipage/browsers.html#session-history-entry" id="ref-for-index-term-session-history-entry-2">session
+          history entry</a></dfn>
+        </li><li>
+          <dfn id="dfn-unloading-document-visibility-change-steps" class="externalDFN" data-no-export=""><a href="https://html.spec.whatwg.org/multipage/browsers.html#unloading-document-visibility-change-steps" id="ref-for-index-term-unloading-document-visibility-change-steps-2">unloading
+          document visibility change steps</a></dfn>
+        </li></ul>
+    </section>
+    <section id="conformance"><h2 id="x10-conformance"><bdi class="secno">10. </bdi>Conformance<a class="self-link" aria-label="§" href="#conformance"></a></h2><p>As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.</p><p>
+        The key words <em class="rfc2119">MAY</em> and <em class="rfc2119">MUST</em> in this document
+        are to be interpreted as described in
+        <a href="https://datatracker.ietf.org/doc/html/bcp14">BCP 14</a>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>] [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8174" title="Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words">RFC8174</a></cite>]
+        when, and only when, they appear in all capitals, as shown here.
+      </p>
+      
+    </section>
+    <section id="index" class="appendix"><h2 id="a-index"><bdi class="secno">A. </bdi>Index<a class="self-link" aria-label="§" href="#index"></a></h2><section id="index-defined-here">
+    <h3 id="a-1-terms-defined-by-this-specification"><bdi class="secno">A.1 </bdi>Terms defined by this specification<a class="self-link" aria-label="§" href="#index-defined-here"></a></h3>
+    <ul class="index">
+    <li>
+      <a class="index-term" href="#dfn-determine-the-visibility-state">determine the visibility state</a> 
+    <span class="print-only">§3.</span></li><li>
+      <a class="index-term" href="#dfn-external-now-hidden-algorithm">external now hidden algorithm</a> 
+    <span class="print-only">§6.</span></li><li>
+      <a class="index-term" href="#dfn-external-now-visible-algorithm">external now visible algorithm</a> 
+    <span class="print-only">§6.</span></li><li>
+    hidden
+    <ul>
+      <li>
+      <a class="index-term" href="#dfn-hidden">definition of</a> 
+    <span class="print-only">§3.</span></li><li>
+      <a class="index-term" href="#dom-visibilitystate-hidden">enum value for <code>VisibilityState</code></a> 
+    <span class="print-only">§4.</span></li><li>
+      <a class="index-term" href="#dom-document-hidden">attribute for <code>Document</code></a> 
+    <span class="print-only">§5.1</span></li>
+    </ul>
+  </li><li>
+      <a class="index-term" href="#dfn-now-hidden-algorithm">now hidden algorithm</a> 
+    <span class="print-only">§6.</span></li><li>
+      <a class="index-term" href="#dfn-now-visible-algorithm">now visible algorithm</a> 
+    <span class="print-only">§6.</span></li><li>
+      <a class="index-term" href="#dom-document-onvisibilitychange"><code>onvisibilitychange</code></a> attribute for <code>Document</code>
+    <span class="print-only">§5.3</span></li><li>
+      <a class="index-term" href="#dfn-visibility-states">visibility states</a> 
+    <span class="print-only">§3.</span></li><li>
+      <a class="index-term" href="#dom-document-visibilitystate"><code>visibilityState</code></a> attribute for <code>Document</code>
+    <span class="print-only">§5.2</span></li><li>
+    visible
+    <ul>
+      <li>
+      <a class="index-term" href="#dfn-visible">definition of</a> 
+    <span class="print-only">§3.</span></li><li>
+      <a class="index-term" href="#dom-visibilitystate-visible">enum value for <code>VisibilityState</code></a> 
+    <span class="print-only">§4.</span></li>
+    </ul>
+  </li><li>
+      <a class="index-term" href="#dom-visibilitystate"><code>VisibilityState</code></a> enum
+    <span class="print-only">§4.</span></li>
+  </ul>
+  </section><section id="index-defined-elsewhere">
+    <h3 id="a-2-terms-defined-by-reference"><bdi class="secno">A.2 </bdi>Terms defined by reference<a class="self-link" aria-label="§" href="#index-defined-elsewhere"></a></h3>
+    <ul class="index">
+    <li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-dom">DOM</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://dom.spec.whatwg.org/#concept-document" id="index-term-document" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">document</span>
+  </li><li>
+    <span class="index-term" data-href="https://dom.spec.whatwg.org/#document" id="index-term-document-interface" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition"><code>Document</code> interface</span>
+  </li><li>
+    <span class="index-term" data-href="https://dom.spec.whatwg.org/#concept-event-fire" id="index-term-fire-an-event" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">Fire an event</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-html">HTML</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="index-term-active-document" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">active document</span>
+  </li><li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/indices.html#event-blur" id="index-term-blur-for-window" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">blur (for <code>Window</code>)</span>
+  </li><li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="index-term-browsing-context" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">browsing context</span>
+  </li><li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes" id="index-term-event-handler-idl-attribute" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">event handler IDL attribute</span>
+  </li><li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="index-term-eventhandler" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition"><code>EventHandler</code></span>
+  </li><li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/indices.html#event-focus" id="index-term-focus-for-window" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">focus (for <code>Window</code>)</span>
+  </li><li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/indices.html#event-pageshow" id="index-term-pageshow-for-window" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">pageshow (for <code>Window</code>)</span>
+  </li><li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="index-term-queue-a-task" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">queue a task</span>
+  </li><li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="index-term-relevant-global-object" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">relevant global object</span>
+  </li><li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/browsers.html#session-history-entry" id="index-term-session-history-entry" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">session history entry</span>
+  </li><li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/webappapis.html#task-source" id="index-term-task-source" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">task source</span>
+  </li><li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task" id="index-term-tasks" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">tasks</span>
+  </li><li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="index-term-top-level-browsing-context" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">top-level browsing context</span>
+  </li><li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/indices.html#event-unload" id="index-term-unload-for-window" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">unload (for <code>Window</code>)</span>
+  </li><li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/browsers.html#unloading-document-visibility-change-steps" id="index-term-unloading-document-visibility-change-steps" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">unloading document visibility change steps</span>
+  </li><li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/webappapis.html#user-interaction-task-source" id="index-term-user-interaction-task-source" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">user interaction task source</span>
+  </li><li>
+    <span class="index-term" data-href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="index-term-window-interface" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition"><code>Window</code> interface</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-webidl">WEBIDL</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://heycam.github.io/webidl/#idl-boolean" id="index-term-boolean-type" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition"><code>boolean</code> type</span>
+  </li><li>
+    <span class="index-term" data-href="https://heycam.github.io/webidl/#this" id="index-term-this" tabindex="0" aria-haspopup="dialog" title="Show what links to this definition">this</span>
+  </li>
+        </ul>
+      </li>
+  </ul>
+  </section></section>
+    <section id="acknowledgements" class="appendix">
+      <h2 id="b-acknowledgments"><bdi class="secno">B. </bdi>
+        Acknowledgments
+      <a class="self-link" aria-label="§" href="#acknowledgements"></a></h2>
+      <p>
+        Thanks to Alex Komoroske, Arvind Jain, Boris Zbarsky, Cameron
+        McCormack, James Robinson, Jason Weber, Jonas Sicking, Karen Anderson,
+        Kyle Simpson, Nat Duca, Nic Jansma, Philippe Le Hegaret, and Todd
+        Reifsteck for their contributions to this work.
+      </p>
+    </section>
+  
+
+<section id="references" class="appendix"><h2 id="c-references"><bdi class="secno">C. </bdi>References<a class="self-link" aria-label="§" href="#references"></a></h2><section id="normative-references">
+    <h3 id="c-1-normative-references"><bdi class="secno">C.1 </bdi>Normative references<a class="self-link" aria-label="§" href="#normative-references"></a></h3>
+    <dl class="bibliography"><dt id="bib-dom">[dom]</dt><dd><a href="https://dom.spec.whatwg.org/"><cite>DOM Standard</cite></a>. Anne van Kesteren.  WHATWG. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a></dd><dt id="bib-html">[HTML]</dt><dd><a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Anne van Kesteren; Domenic Denicola; Ian Hickson; Philip Jägenstedt; Simon Pieters.  WHATWG. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a></dd><dt id="bib-rfc2119">[RFC2119]</dt><dd><a href="https://tools.ietf.org/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a></dd><dt id="bib-rfc8174">[RFC8174]</dt><dd><a href="https://tools.ietf.org/html/rfc8174"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc8174">https://tools.ietf.org/html/rfc8174</a></dd><dt id="bib-webidl">[webidl]</dt><dd><a href="https://heycam.github.io/webidl/"><cite>Web IDL</cite></a>. Boris Zbarsky.  W3C. 15 December 2016. W3C Editor's Draft. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a></dd></dl>
+  </section></section><p role="navigation" id="back-to-top">
+    <a href="#title"><abbr title="Back to Top">↑</abbr></a>
+  </p><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-visibility-states" aria-label="Links in this document to definition: visibility states">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-visibility-states" aria-label="Permalink for definition: visibility states. Activate to close this dialog.">Permalink</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> 
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-dfn-visibility-states-1" title="§ Status of This Document">§ Status of This Document</a> 
+  </li><li>
+    <a href="#ref-for-dfn-visibility-states-2" title="§ 1. Introduction">§ 1. Introduction</a> <a href="#ref-for-dfn-visibility-states-3" title="Reference 2">(2)</a> <a href="#ref-for-dfn-visibility-states-4" title="Reference 3">(3)</a> <a href="#ref-for-dfn-visibility-states-5" title="Reference 4">(4)</a> 
+  </li><li>
+    <a href="#ref-for-dfn-visibility-states-6" title="§ 3. Visibility states">§ 3. Visibility states</a> <a href="#ref-for-dfn-visibility-states-7" title="Reference 2">(2)</a> 
+  </li><li>
+    <a href="#ref-for-dfn-visibility-states-8" title="§ 4. VisibilityState enum">§ 4. VisibilityState enum</a> <a href="#ref-for-dfn-visibility-states-9" title="Reference 2">(2)</a> <a href="#ref-for-dfn-visibility-states-10" title="Reference 3">(3)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-hidden" aria-label="Links in this document to definition: hidden">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-hidden" aria-label="Permalink for definition: hidden. Activate to close this dialog.">Permalink</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> 
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-dfn-hidden-1" title="§ Status of This Document">§ Status of This Document</a> 
+  </li><li>
+    <a href="#ref-for-dfn-hidden-2" title="§ 2. Examples of usage">§ 2. Examples of usage</a> 
+  </li><li>
+    <a href="#ref-for-dfn-hidden-3" title="§ 3. Visibility states">§ 3. Visibility states</a> <a href="#ref-for-dfn-hidden-4" title="Reference 2">(2)</a> 
+  </li><li>
+    <a href="#ref-for-dfn-hidden-5" title="§ 4. VisibilityState enum">§ 4. VisibilityState enum</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-visible" aria-label="Links in this document to definition: visible">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-visible" aria-label="Permalink for definition: visible. Activate to close this dialog.">Permalink</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> 
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-dfn-visible-1" title="§ 1. Introduction">§ 1. Introduction</a> <a href="#ref-for-dfn-visible-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-visible-3" title="Reference 3">(3)</a> <a href="#ref-for-dfn-visible-4" title="Reference 4">(4)</a> 
+  </li><li>
+    <a href="#ref-for-dfn-visible-5" title="§ 2. Examples of usage">§ 2. Examples of usage</a> 
+  </li><li>
+    <a href="#ref-for-dfn-visible-6" title="§ 3. Visibility states">§ 3. Visibility states</a> <a href="#ref-for-dfn-visible-7" title="Reference 2">(2)</a> 
+  </li><li>
+    <a href="#ref-for-dfn-visible-8" title="§ 4. VisibilityState enum">§ 4. VisibilityState enum</a> 
+  </li><li>
+    <a href="#ref-for-dfn-visible-9" title="§ 5.1 hidden attribute">§ 5.1 hidden attribute</a> 
+  </li><li>
+    <a href="#ref-for-dfn-visible-10" title="§ 5.2 visibilityState attribute">§ 5.2 visibilityState attribute</a> 
+  </li><li>
+    <a href="#ref-for-dfn-visible-11" title="§ 6. Reacting to &quot;visibilitychange&quot; changes">§ 6. Reacting to "visibilitychange" changes</a> <a href="#ref-for-dfn-visible-12" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-determine-the-visibility-state" aria-label="Links in this document to definition: determine the visibility state">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-determine-the-visibility-state" aria-label="Permalink for definition: determine the visibility state. Activate to close this dialog.">Permalink</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> 
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-dfn-determine-the-visibility-state-1" title="§ 3. Visibility states">§ 3. Visibility states</a> <a href="#ref-for-dfn-determine-the-visibility-state-2" title="Reference 2">(2)</a> 
+  </li><li>
+    <a href="#ref-for-dfn-determine-the-visibility-state-3" title="§ 5.1 hidden attribute">§ 5.1 hidden attribute</a> 
+  </li><li>
+    <a href="#ref-for-dfn-determine-the-visibility-state-4" title="§ 5.2 visibilityState attribute">§ 5.2 visibilityState attribute</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-visibilitystate" aria-label="Links in this document to definition: VisibilityState">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dom-visibilitystate" aria-label="Permalink for definition: VisibilityState. Activate to close this dialog.">Permalink</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-1365879173">IDL</a>
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-dom-visibilitystate-1" title="§ Status of This Document">§ Status of This Document</a> 
+  </li><li>
+    <a href="#ref-for-dom-visibilitystate-2" title="§ 3. Visibility states">§ 3. Visibility states</a> 
+  </li><li>
+    <a href="#ref-for-dom-visibilitystate-3" title="§ 4. VisibilityState enum">§ 4. VisibilityState enum</a> 
+  </li><li>
+    <a href="#ref-for-dom-visibilitystate-4" title="§ 5. Extensions to the Document interface">§ 5. Extensions to the Document interface</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-visibilitystate-hidden" aria-label="Links in this document to definition: hidden">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dom-visibilitystate-hidden" aria-label="Permalink for definition: hidden. Activate to close this dialog.">Permalink</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-1365879173">IDL</a>
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-dom-visibilitystate-hidden-1" title="§ 4. VisibilityState enum">§ 4. VisibilityState enum</a> 
+  </li><li>
+    <a href="#ref-for-dom-visibilitystate-hidden-2" title="§ 5.2 visibilityState attribute">§ 5.2 visibilityState attribute</a> 
+  </li><li>
+    <a href="#ref-for-dom-visibilitystate-hidden-3" title="§ 8. Accessibility considerations">§ 8. Accessibility considerations</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-visibilitystate-visible" aria-label="Links in this document to definition: visible">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dom-visibilitystate-visible" aria-label="Permalink for definition: visible. Activate to close this dialog.">Permalink</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-1365879173">IDL</a>
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-dom-visibilitystate-visible-1" title="§ 4. VisibilityState enum">§ 4. VisibilityState enum</a> 
+  </li><li>
+    <a href="#ref-for-dom-visibilitystate-visible-2" title="§ 5.2 visibilityState attribute">§ 5.2 visibilityState attribute</a> 
+  </li><li>
+    <a href="#ref-for-dom-visibilitystate-visible-3" title="§ 8. Accessibility considerations">§ 8. Accessibility considerations</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-document-hidden" aria-label="Links in this document to definition: hidden">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dom-document-hidden" aria-label="Permalink for definition: hidden. Activate to close this dialog.">Permalink</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-722037302">IDL</a>
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-dom-document-hidden-1" title="§ 5. Extensions to the Document interface">§ 5. Extensions to the Document interface</a> 
+  </li><li>
+    <a href="#ref-for-dom-document-hidden-2" title="§ 5.1 hidden attribute">§ 5.1 hidden attribute</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-document-visibilitystate" aria-label="Links in this document to definition: visibilityState">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dom-document-visibilitystate" aria-label="Permalink for definition: visibilityState. Activate to close this dialog.">Permalink</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-722037302">IDL</a>
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-dom-document-visibilitystate-1" title="§ 2. Examples of usage">§ 2. Examples of usage</a> 
+  </li><li>
+    <a href="#ref-for-dom-document-visibilitystate-2" title="§ 5. Extensions to the Document interface">§ 5. Extensions to the Document interface</a> 
+  </li><li>
+    <a href="#ref-for-dom-document-visibilitystate-3" title="§ 5.2 visibilityState attribute">§ 5.2 visibilityState attribute</a> 
+  </li><li>
+    <a href="#ref-for-dom-document-visibilitystate-4" title="§ 8. Accessibility considerations">§ 8. Accessibility considerations</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-document-onvisibilitychange" aria-label="Links in this document to definition: onvisibilitychange">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dom-document-onvisibilitychange" aria-label="Permalink for definition: onvisibilitychange. Activate to close this dialog.">Permalink</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-722037302">IDL</a>
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-dom-document-onvisibilitychange-1" title="§ Status of This Document">§ Status of This Document</a> 
+  </li><li>
+    <a href="#ref-for-dom-document-onvisibilitychange-2" title="§ 5. Extensions to the Document interface">§ 5. Extensions to the Document interface</a> 
+  </li><li>
+    <a href="#ref-for-dom-document-onvisibilitychange-3" title="§ 5.3 onvisibilitychange event handler attribute">§ 5.3 onvisibilitychange event handler attribute</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-now-visible-algorithm" aria-label="Links in this document to definition: now visible algorithm">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-now-visible-algorithm" aria-label="Permalink for definition: now visible algorithm. Activate to close this dialog.">Permalink</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> 
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-dfn-now-visible-algorithm-1" title="§ 6. Reacting to &quot;visibilitychange&quot; changes">§ 6. Reacting to "visibilitychange" changes</a> <a href="#ref-for-dfn-now-visible-algorithm-2" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-external-now-visible-algorithm" aria-label="Links in this document to definition: external now visible algorithm">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-external-now-visible-algorithm" aria-label="Permalink for definition: external now visible algorithm. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-now-hidden-algorithm" aria-label="Links in this document to definition: now hidden algorithm">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-now-hidden-algorithm" aria-label="Permalink for definition: now hidden algorithm. Activate to close this dialog.">Permalink</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> 
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-dfn-now-hidden-algorithm-1" title="§ 6. Reacting to &quot;visibilitychange&quot; changes">§ 6. Reacting to "visibilitychange" changes</a> <a href="#ref-for-dfn-now-hidden-algorithm-2" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-external-now-hidden-algorithm" aria-label="Links in this document to definition: external now hidden algorithm">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-external-now-hidden-algorithm" aria-label="Permalink for definition: external now hidden algorithm. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-document" aria-label="Links in this document to definition: document">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://dom.spec.whatwg.org/#concept-document" aria-label="Permalink for definition: document. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-document-1" title="§ 3. Visibility states">§ 3. Visibility states</a> <a href="#ref-for-index-term-document-2" title="Reference 2">(2)</a> <a href="#ref-for-index-term-document-3" title="Reference 3">(3)</a> <a href="#ref-for-index-term-document-4" title="Reference 4">(4)</a> <a href="#ref-for-index-term-document-5" title="Reference 5">(5)</a> <a href="#ref-for-index-term-document-6" title="Reference 6">(6)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-document-interface" aria-label="Links in this document to definition: Document interface">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://dom.spec.whatwg.org/#document" aria-label="Permalink for definition: Document interface. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-document-interface-1" title="§ 2. Examples of usage">§ 2. Examples of usage</a> 
+  </li><li>
+    <a href="#ref-for-index-term-document-interface-2" title="§ 5. Extensions to the Document interface">§ 5. Extensions to the Document interface</a> <a href="#ref-for-index-term-document-interface-3" title="Reference 2">(2)</a> 
+  </li><li>
+    <a href="#ref-for-index-term-document-interface-4" title="§ 6. Reacting to &quot;visibilitychange&quot; changes">§ 6. Reacting to "visibilitychange" changes</a> <a href="#ref-for-index-term-document-interface-5" title="Reference 2">(2)</a> <a href="#ref-for-index-term-document-interface-6" title="Reference 3">(3)</a> <a href="#ref-for-index-term-document-interface-7" title="Reference 4">(4)</a> <a href="#ref-for-index-term-document-interface-8" title="Reference 5">(5)</a> 
+  </li><li>
+    <a href="#ref-for-index-term-document-interface-9" title="§ 7. Privacy and Security">§ 7. Privacy and Security</a> <a href="#ref-for-index-term-document-interface-10" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fire-an-event" aria-label="Links in this document to definition: Fire an event">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://dom.spec.whatwg.org/#concept-event-fire" aria-label="Permalink for definition: Fire an event. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-fire-an-event-1" title="§ 6. Reacting to &quot;visibilitychange&quot; changes">§ 6. Reacting to "visibilitychange" changes</a> <a href="#ref-for-index-term-fire-an-event-2" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-active-document" aria-label="Links in this document to definition: active document">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" aria-label="Permalink for definition: active document. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-active-document-1" title="§ 3. Visibility states">§ 3. Visibility states</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-blur-for-window" aria-label="Links in this document to definition: blur (for Window)">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/indices.html#event-blur" aria-label="Permalink for definition: blur (for Window). Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-blur-for-window-1" title="§ 7. Privacy and Security">§ 7. Privacy and Security</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-browsing-context" aria-label="Links in this document to definition: browsing context">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" aria-label="Permalink for definition: browsing context. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-browsing-context-1" title="§ 3. Visibility states">§ 3. Visibility states</a> <a href="#ref-for-index-term-browsing-context-2" title="Reference 2">(2)</a> <a href="#ref-for-index-term-browsing-context-3" title="Reference 3">(3)</a> 
+  </li><li>
+    <a href="#ref-for-index-term-browsing-context-4" title="§ 5.1 hidden attribute">§ 5.1 hidden attribute</a> 
+  </li><li>
+    <a href="#ref-for-index-term-browsing-context-5" title="§ 5.2 visibilityState attribute">§ 5.2 visibilityState attribute</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-event-handler-idl-attribute" aria-label="Links in this document to definition: event handler IDL attribute">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes" aria-label="Permalink for definition: event handler IDL attribute. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-event-handler-idl-attribute-1" title="§ 5.3 onvisibilitychange event handler attribute">§ 5.3 onvisibilitychange event handler attribute</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-eventhandler" aria-label="Links in this document to definition: EventHandler">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" aria-label="Permalink for definition: EventHandler. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-eventhandler-1" title="§ 5. Extensions to the Document interface">§ 5. Extensions to the Document interface</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-focus-for-window" aria-label="Links in this document to definition: focus (for Window)">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/indices.html#event-focus" aria-label="Permalink for definition: focus (for Window). Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-focus-for-window-1" title="§ 7. Privacy and Security">§ 7. Privacy and Security</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-pageshow-for-window" aria-label="Links in this document to definition: pageshow (for Window)">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/indices.html#event-pageshow" aria-label="Permalink for definition: pageshow (for Window). Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-pageshow-for-window-1" title="§ 6. Reacting to &quot;visibilitychange&quot; changes">§ 6. Reacting to "visibilitychange" changes</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-queue-a-task" aria-label="Links in this document to definition: queue a task">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" aria-label="Permalink for definition: queue a task. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-queue-a-task-1" title="§ 6. Reacting to &quot;visibilitychange&quot; changes">§ 6. Reacting to "visibilitychange" changes</a> <a href="#ref-for-index-term-queue-a-task-2" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-relevant-global-object" aria-label="Links in this document to definition: relevant global object">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" aria-label="Permalink for definition: relevant global object. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-relevant-global-object-1" title="§ 3. Visibility states">§ 3. Visibility states</a> <a href="#ref-for-index-term-relevant-global-object-2" title="Reference 2">(2)</a> 
+  </li><li>
+    <a href="#ref-for-index-term-relevant-global-object-3" title="§ 5.1 hidden attribute">§ 5.1 hidden attribute</a> 
+  </li><li>
+    <a href="#ref-for-index-term-relevant-global-object-4" title="§ 5.2 visibilityState attribute">§ 5.2 visibilityState attribute</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-session-history-entry" aria-label="Links in this document to definition: session history entry">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/browsers.html#session-history-entry" aria-label="Permalink for definition: session history entry. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-session-history-entry-1" title="§ 6. Reacting to &quot;visibilitychange&quot; changes">§ 6. Reacting to "visibilitychange" changes</a> 
+  </li><li>
+    <a href="#ref-for-index-term-session-history-entry-2" title="§ 9. Terminology">§ 9. Terminology</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-task-source" aria-label="Links in this document to definition: task source">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/webappapis.html#task-source" aria-label="Permalink for definition: task source. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-task-source-1" title="§ 6. Reacting to &quot;visibilitychange&quot; changes">§ 6. Reacting to "visibilitychange" changes</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-tasks" aria-label="Links in this document to definition: tasks">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task" aria-label="Permalink for definition: tasks. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-tasks-1" title="§ 6. Reacting to &quot;visibilitychange&quot; changes">§ 6. Reacting to "visibilitychange" changes</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-top-level-browsing-context" aria-label="Links in this document to definition: top-level browsing context">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" aria-label="Permalink for definition: top-level browsing context. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-top-level-browsing-context-1" title="§ 3. Visibility states">§ 3. Visibility states</a> <a href="#ref-for-index-term-top-level-browsing-context-2" title="Reference 2">(2)</a> 
+  </li><li>
+    <a href="#ref-for-index-term-top-level-browsing-context-3" title="§ 6. Reacting to &quot;visibilitychange&quot; changes">§ 6. Reacting to "visibilitychange" changes</a> <a href="#ref-for-index-term-top-level-browsing-context-4" title="Reference 2">(2)</a> <a href="#ref-for-index-term-top-level-browsing-context-5" title="Reference 3">(3)</a> <a href="#ref-for-index-term-top-level-browsing-context-6" title="Reference 4">(4)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-unload-for-window" aria-label="Links in this document to definition: unload (for Window)">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/indices.html#event-unload" aria-label="Permalink for definition: unload (for Window). Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-unload-for-window-1" title="§ 6. Reacting to &quot;visibilitychange&quot; changes">§ 6. Reacting to "visibilitychange" changes</a> <a href="#ref-for-index-term-unload-for-window-2" title="Reference 2">(2)</a> 
+  </li><li>
+    <a href="#ref-for-index-term-unload-for-window-3" title="§ 7. Privacy and Security">§ 7. Privacy and Security</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-unloading-document-visibility-change-steps" aria-label="Links in this document to definition: unloading document visibility change steps">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/browsers.html#unloading-document-visibility-change-steps" aria-label="Permalink for definition: unloading document visibility change steps. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-unloading-document-visibility-change-steps-1" title="§ 6. Reacting to &quot;visibilitychange&quot; changes">§ 6. Reacting to "visibilitychange" changes</a> 
+  </li><li>
+    <a href="#ref-for-index-term-unloading-document-visibility-change-steps-2" title="§ 9. Terminology">§ 9. Terminology</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-user-interaction-task-source" aria-label="Links in this document to definition: user interaction task source">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/webappapis.html#user-interaction-task-source" aria-label="Permalink for definition: user interaction task source. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-user-interaction-task-source-1" title="§ 6. Reacting to &quot;visibilitychange&quot; changes">§ 6. Reacting to "visibilitychange" changes</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-window-interface" aria-label="Links in this document to definition: Window interface">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://html.spec.whatwg.org/multipage/window-object.html#window" aria-label="Permalink for definition: Window interface. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-window-interface-1" title="§ 7. Privacy and Security">§ 7. Privacy and Security</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-boolean-type" aria-label="Links in this document to definition: boolean type">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://heycam.github.io/webidl/#idl-boolean" aria-label="Permalink for definition: boolean type. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-boolean-type-1" title="§ 5. Extensions to the Document interface">§ 5. Extensions to the Document interface</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-this" aria-label="Links in this document to definition: this">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://heycam.github.io/webidl/#this" aria-label="Permalink for definition: this. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-this-1" title="§ 5.1 hidden attribute">§ 5.1 hidden attribute</a> 
+  </li><li>
+    <a href="#ref-for-index-term-this-2" title="§ 5.2 visibilityState attribute">§ 5.2 visibilityState attribute</a> 
+  </li>
+  </ul>
+    </div><script id="respec-dfn-panel">(() => {
+// @ts-check
+if (document.respec) {
+  document.respec.ready.then(setupPanel);
+} else {
+  setupPanel();
+}
+
+function setupPanel() {
+  const listener = panelListener();
+  document.body.addEventListener("keydown", listener);
+  document.body.addEventListener("click", listener);
+}
+
+function panelListener() {
+  /** @type {HTMLElement} */
+  let panel = null;
+  return event => {
+    const { target, type } = event;
+
+    if (!(target instanceof HTMLElement)) return;
+
+    // For keys, we only care about Enter key to activate the panel
+    // otherwise it's activated via a click.
+    if (type === "keydown" && event.key !== "Enter") return;
+
+    const action = deriveAction(event);
+
+    switch (action) {
+      case "show": {
+        hidePanel(panel);
+        /** @type {HTMLElement} */
+        const dfn = target.closest("dfn, .index-term");
+        panel = document.getElementById(`dfn-panel-for-${dfn.id}`);
+        const coords = deriveCoordinates(event);
+        displayPanel(dfn, panel, coords);
+        break;
+      }
+      case "dock": {
+        panel.style.left = null;
+        panel.style.top = null;
+        panel.classList.add("docked");
+        break;
+      }
+      case "hide": {
+        hidePanel(panel);
+        panel = null;
+        break;
+      }
+    }
+  };
+}
+
+/**
+ * @param {MouseEvent|KeyboardEvent} event
+ */
+function deriveCoordinates(event) {
+  const target = /** @type HTMLElement */ (event.target);
+
+  // We prevent synthetic AT clicks from putting
+  // the dialog in a weird place. The AT events sometimes
+  // lack coordinates, so they have clientX/Y = 0
+  const rect = target.getBoundingClientRect();
+  if (
+    event instanceof MouseEvent &&
+    event.clientX >= rect.left &&
+    event.clientY >= rect.top
+  ) {
+    // The event probably happened inside the bounding rect...
+    return { x: event.clientX, y: event.clientY };
+  }
+
+  // Offset to the middle of the element
+  const x = rect.x + rect.width / 2;
+  // Placed at the bottom of the element
+  const y = rect.y + rect.height;
+  return { x, y };
+}
+
+/**
+ * @param {Event} event
+ */
+function deriveAction(event) {
+  const target = /** @type {HTMLElement} */ (event.target);
+  const hitALink = !!target.closest("a");
+  if (target.closest("dfn:not([data-cite]), .index-term")) {
+    return hitALink ? "none" : "show";
+  }
+  if (target.closest(".dfn-panel")) {
+    if (hitALink) {
+      return target.classList.contains("self-link") ? "hide" : "dock";
+    }
+    const panel = target.closest(".dfn-panel");
+    return panel.classList.contains("docked") ? "hide" : "none";
+  }
+  if (document.querySelector(".dfn-panel:not([hidden])")) {
+    return "hide";
+  }
+  return "none";
+}
+
+/**
+ * @param {HTMLElement} dfn
+ * @param {HTMLElement} panel
+ * @param {{ x: number, y: number }} clickPosition
+ */
+function displayPanel(dfn, panel, { x, y }) {
+  panel.hidden = false;
+  // distance (px) between edge of panel and the pointing triangle (caret)
+  const MARGIN = 20;
+
+  const dfnRects = dfn.getClientRects();
+  // Find the `top` offset when the `dfn` can be spread across multiple lines
+  let closestTop = 0;
+  let minDiff = Infinity;
+  for (const rect of dfnRects) {
+    const { top, bottom } = rect;
+    const diffFromClickY = Math.abs((top + bottom) / 2 - y);
+    if (diffFromClickY < minDiff) {
+      minDiff = diffFromClickY;
+      closestTop = top;
+    }
+  }
+
+  const top = window.scrollY + closestTop + dfnRects[0].height;
+  const left = x - MARGIN;
+  panel.style.left = `${left}px`;
+  panel.style.top = `${top}px`;
+
+  // Find if the panel is flowing out of the window
+  const panelRect = panel.getBoundingClientRect();
+  const SCREEN_WIDTH = Math.min(window.innerWidth, window.screen.width);
+  if (panelRect.right > SCREEN_WIDTH) {
+    const newLeft = Math.max(MARGIN, x + MARGIN - panelRect.width);
+    const newCaretOffset = left - newLeft;
+    panel.style.left = `${newLeft}px`;
+    /** @type {HTMLElement} */
+    const caret = panel.querySelector(".caret");
+    caret.style.left = `${newCaretOffset}px`;
+  }
+
+  // As it's a dialog, we trap focus.
+  // TODO: when <dialog> becomes a implemented, we should really
+  // use that.
+  trapFocus(panel, dfn);
+}
+
+/**
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function trapFocus(panel, dfn) {
+  /** @type NodeListOf<HTMLAnchorElement> elements */
+  const anchors = panel.querySelectorAll("a[href]");
+  // No need to trap focus
+  if (!anchors.length) return;
+
+  // Move focus to first anchor element
+  const first = anchors.item(0);
+  first.focus();
+
+  const trapListener = createTrapListener(anchors, panel, dfn);
+  panel.addEventListener("keydown", trapListener);
+
+  // Hiding the panel releases the trap
+  const mo = new MutationObserver(records => {
+    const [record] = records;
+    const target = /** @type HTMLElement */ (record.target);
+    if (target.hidden) {
+      panel.removeEventListener("keydown", trapListener);
+      mo.disconnect();
+    }
+  });
+  mo.observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+}
+
+/**
+ *
+ * @param {NodeListOf<HTMLAnchorElement>} anchors
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function createTrapListener(anchors, panel, dfn) {
+  const lastIndex = anchors.length - 1;
+  let currentIndex = 0;
+  return event => {
+    switch (event.key) {
+      // Hitting "Tab" traps us in a nice loop around elements.
+      case "Tab": {
+        event.preventDefault();
+        currentIndex += event.shiftKey ? -1 : +1;
+        if (currentIndex < 0) {
+          currentIndex = lastIndex;
+        } else if (currentIndex > lastIndex) {
+          currentIndex = 0;
+        }
+        anchors.item(currentIndex).focus();
+        break;
+      }
+
+      // Hitting "Enter" on an anchor releases the trap.
+      case "Enter":
+        hidePanel(panel);
+        break;
+
+      // Hitting "Escape" returns focus to dfn.
+      case "Escape":
+        hidePanel(panel);
+        dfn.focus();
+        return;
+    }
+  };
+}
+
+/** @param {HTMLElement} panel */
+function hidePanel(panel) {
+  if (!panel) return;
+  panel.hidden = true;
+  panel.classList.remove("docked");
+}
+})()</script><script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script></body></html>
